@@ -141,12 +141,6 @@ p {
   flex-wrap: wrap;
 }
 
-.active-filters-label {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 500;
-  white-space: nowrap;
-}
 
 .active-filters-list {
   display: flex;
