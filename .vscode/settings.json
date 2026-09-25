@@ -11,7 +11,7 @@
   "html.format.maxPreserveNewLines": 10,
   "html.format.wrapLineLength": 0,
   "html.format.indentInnerHtml": false,
-  "emmet.showExpandedAbbreviation": "never",
+  "emmet.showExpandedAbbreviation": "always",
   "editor.suggest.insertMode": "replace",
-  "editor.acceptSuggestionOnEnter": "off"
+  "editor.acceptSuggestionOnEnter": "on"
 }
