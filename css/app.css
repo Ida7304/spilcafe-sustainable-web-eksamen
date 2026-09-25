@@ -6,20 +6,17 @@
   --primary: rgb(199, 2, 0);
   --secondary: rgba(199, 2, 0, 0.25);
   --primary-light: #FAFAFA;
-  --secondary-light: #3c4043;
 
   /* Text - Dark Mode Colors */
   --text: #1E1B1B;
-  --text-light: #1E1B1B;  /*Bruges ikke*/
+  --text-light: #1E1B1B;  
 
-  /* Backgrounds - Dark Mode */
+  /* Backgrounds - Light Mode */
   --bg: #FAFAFA;
   --bg-card: #F1F1F1;
 
+  
   /* Semantic */
-  /* Semantic */
-  --success: #34a853;
-  --warning: #fbc02d;
   --error: #ea4335;
 
   /* Effects */
@@ -183,23 +180,6 @@ p {
   color: var(--primary-light);
 }
 
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-  .active-filters-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .active-filters-label {
-    font-size: 0.8rem;
-  }
-  
-  .active-filter-tag {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
-  }
-}
 
 /* =====================
    BOTTOM NAVIGATION BAR
@@ -573,12 +553,11 @@ p {
 
 
 
-/* (main er allerede defineret ovenfor - dublet fjernet) */
 
 /* =====================
    GAME GRID & CARDS
    ===================== */
-/* TODO !!! */
+
 
 .game-card {
   background: var(--bg-card);
@@ -593,7 +572,6 @@ p {
 .game-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--secondary);
 }
 
 .game-card:focus {
@@ -854,25 +832,67 @@ dialog#game-dialog::backdrop {
   min-height: 44px;
 }
 
-.favorite-icon:hover {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+/* =================================
+   SPILOVERSIGT STYLING (ALLE SPIL–OVERSIGT)
+   ================================= */
+
+.games-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
 }
 
-/* Active state for mobile touch feedback */
-.favorite-icon:active {
-  transform: scale(0.95);
-  background: rgba(240, 240, 240, 1);
+
+.sort-controls select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 0.9rem;
+  min-width: 150px;
 }
+
+.sort-controls select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+
 
 /* ==================
    RESPONSIVT DESIGN
    ================== */
 
-/* RESPONSIV HEADER */
-/* Table og mindre mobile enheder (Breakpoints) */
+/* Tablet og mindre mobile enheder (Breakpoints) */
+
 @media (max-width: 768px) {
+  .games-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .sort-controls select {
+    font-size: 0.8rem;
+    min-width: 120px;
+    padding: 0.4rem;
+  }
+
+  .active-filters-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .active-filter-tag {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
   header {
     grid-template-columns: auto 1fr auto;
     gap: 0.5rem;
@@ -907,6 +927,48 @@ dialog#game-dialog::backdrop {
   .filter-actions {
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+/* RESPONSIVT DESIGN FOR DIALOG MODALET */
+
+  #dialog-content {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    text-align: center;
+  }
+   .game-poster-container {
+    margin: 20px auto;
+  }
+   #dialog-content img.game-poster {
+    max-width: 300px;
+  }
+
+
+/* BOTTOM NAVIGATION RESPONSIVE STYLING*/
+
+  .bottom-nav-item {
+    padding: 0.4rem 1rem;
+    margin: 0 0.25rem;
+    min-width: 70px;
+  }
+  
+  .bottom-nav-icon {
+    font-size: 1.25rem;
+    margin-bottom: 0.2rem;
+  }
+  
+/* NO FAVORITES RESPONSIVE STYLING */
+  .no-favorites {
+   padding: 2rem 1rem;
+  }
+  
+  .no-favorites h3 {
+    font-size: 1.25rem;
+  }
+  
+  .no-favorites p {
+    font-size: 1rem;
   }
 }
 
@@ -943,29 +1005,8 @@ dialog#game-dialog::backdrop {
   .filter-panel {
     padding: 1rem;
   }
-}
-
-
-/* RESPONSIVT DESIGN FOR DIALOG MODALET */
-
-/* Tablet og større mobile enheder (breakpoints) */
-@media (max-width: 768px) {
-  #dialog-content {
-    grid-template-columns: 1fr;
-    padding: 1.5rem;
-    gap: 1.5rem;
-    text-align: center;
-  }
-   .game-poster-container {
-    margin: 20px auto;
-  }
-   #dialog-content img.game-poster {
-    max-width: 300px;
-  }
-}
 
 /* Smartphones/iPhone (breakpoints) */
-@media (max-width: 480px) {
   dialog#game-dialog {
   max-width: 100vw;
   width: 100vw;
@@ -1011,7 +1052,7 @@ dialog#game-dialog::backdrop {
 
 /* GAME GRID RESPONSIVE LAYOUT */
 
-/* Mobile først - 1 kolonne */   /* SLET?? */
+/* Mobile først - 1 kolonne */ 
 #game-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1042,119 +1083,3 @@ dialog#game-dialog::backdrop {
   }
 }
 
-/* RESPONSIV FILTERBAR */
-@media (max-width: 768px) {
-  .filterbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-
-  .rating-filter {
-    justify-content: space-between;
-  }
-
-  .rating-filter input {
-    width: 100px;
-  }
-}
-
-/* BOTTOM NAVIGATION RESPONSIVE STYLING*/
-@media (max-width: 768px) {
-  .bottom-nav-item {
-    padding: 0.4rem 1rem;
-    margin: 0 0.25rem;
-    min-width: 70px;
-  }
-  
-  .bottom-nav-icon {
-    font-size: 1.25rem;
-    margin-bottom: 0.2rem;
-  }
-  
-}
-
-/* NO FAVORITES RESPONSIVE STYLING */
-  @media (max-width: 768px) {
-  .no-favorites {
-   padding: 2rem 1rem;
-  }
-  
-  .no-favorites h3 {
-    font-size: 1.25rem;
-  }
-  
-  .no-favorites p {
-    font-size: 1rem;
-  }
-}
-
-
-/* =================================
-   SPILOVERSIGT STYLING (ALLE SPIL–OVERSIGT)
-   ================================= */
-
-.games-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 2rem;
-  padding: 0 1rem;
-}
-
-.sort-controls {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-}
-
-.sort-controls label {
-  font-weight: 500;
-  color: var(--text);
-  font-size: 0.9rem;
-}
-
-.sort-controls select {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  background: var(--bg-card);
-  color: var(--text);
-  font-size: 0.9rem;
-  min-width: 150px;
-}
-
-.sort-controls select:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
-/* Responsive breakpoints */
-@media (max-width: 768px) {
-  .games-header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.5rem;
-  }
-  
-  .games-header h2 {
-    font-size: 1.25rem;
-    margin: 0;
-  }
-  
-  .sort-controls {
-    align-self: auto;
-    align-items: baseline;
-  }
-  
-  .sort-controls label {
-    font-size: 0.8rem;
-  }
-  
-  .sort-controls select {
-    font-size: 0.8rem;
-    min-width: 120px;
-    padding: 0.4rem;
-  }
-}
