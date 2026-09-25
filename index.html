@@ -11,34 +11,24 @@
   <body>
     <header>
       <a href="index.html">
-        <img src="Images/Logo spilcafeen.png" alt="Games App Logo" class="logo"/>
+        <img src="Images/Logo spilcafeen.png" alt="spilcafé logo hjem" class="logo"/>
       </a>
       <!-- Location filter i midten -->
       <div class="header-location">
-        <select id="location-select" class="location-dropdown">
+        <select id="location-select" class="location-dropdown" aria-label="Vælg lokation">
           <option value="all">Alle lokationer</option>
         </select>
       </div>
 
       <!-- Header søgefelt og filter -->
       <div class="header-controls">
-        <div class="header-search">
-          <input
-            type="text"
-            id="header-search-input"
-            placeholder="Søg spil..."
-          />
-        </div>
+        <form class="header-search" role="search">
+          <input type="search" id="header-search-input" placeholder="Søg spil..." aria-label="Søg spil"/>
+        </form>
 
-        <button
-          id="filter-toggle"
-          class="filter-toggle"
-          aria-label="Åbn filtre"
-        >
+        <button id="filter-toggle" class="filter-toggle" aria-label="Åben filtre">
           <img src="Images/Filtrerings ikon.png" alt="Filter" class="filter-icon" />
-          <span id="filter-badge" class="filter-badge" style="display: none"
-            >0</span
-          >
+          <span id="filter-badge" class="filter-badge" style="display: none" >0</span>
         </button>
       </div>
 
@@ -48,7 +38,7 @@
           <h3>Filtrer spil</h3>
 
           <div class="filter-row">
-            <label for="header-sort-select">Sorter efter</label>
+            <label for="header-sort-select">Sortér efter</label>
             <select id="header-sort-select">
               <option value="all">Ingen sortering</option>
               <option value="title">Titel (A-Å)</option>
@@ -65,39 +55,18 @@
           </div>
 
           <div class="filter-row">
-            <label>Antal spillere</label>
+            <label for="header-players-from">Antal spillere</label>
             <div class="range-inputs">
-              <input
-                type="number"
-                id="header-players-from"
-                placeholder="Fra"
-                min="1"
-                max="8"
-                step="1"
-              />
+              <input type="number" id="header-players-from" placeholder="Fra" min="1" max="8" step="1"/>
             </div>
           </div>
 
           <div class="filter-row">
-            <label>Spilletid (min):</label>
+            <label for="header-playtime-from">Spilletid (min):</label>
             <div class="range-inputs">
-              <input
-                type="number"
-                id="header-playtime-from"
-                placeholder="Fra"
-                min="0"
-                max="300"
-                step="15"
-              />
+              <input type="number" id="header-playtime-from" placeholder="Fra" min="0" max="300" step="15"/>
               <span>til</span>
-              <input
-                type="number"
-                id="header-playtime-to"
-                placeholder="Til"
-                min="0"
-                max="300"
-                step="15"
-              />
+              <input type="number" id="header-playtime-to" placeholder="Til" min="0" max="300" step="15" aria-label="Spilletid til"/>
             </div>
           </div>
 
@@ -112,46 +81,23 @@
           </div>
 
           <div class="filter-row">
-            <label>Min. Alder</label>
+            <label for="header-age-from">Min. Alder</label>
             <div class="range-inputs">
-              <input
-                type="number"
-                id="header-age-from"
-                placeholder="Fra"
-                min="0"
-                max="100"
-                step="1"
-              />
+              <input type="number" id="header-age-from" placeholder="Fra" min="0" max="100" step="1"/>
             </div>
           </div>
 
           <div class="filter-row">
-            <label>Rating:</label>
+            <label for="header-rating-from">Rating:</label>
             <div class="range-inputs">
-              <input
-                type="number"
-                id="header-rating-from"
-                placeholder="Fra"
-                min="0"
-                max="5"
-                step="1"
-              />
+              <input type="number" id="header-rating-from" placeholder="Fra" min="0" max="5" step="1"/>
               <span>til</span>
-              <input
-                type="number"
-                id="header-rating-to"
-                placeholder="Til"
-                min="0"
-                max="5"
-                step="1"
-              />
+              <input type="number" id="header-rating-to" placeholder="Til" min="0" max="5" step="1" aria-label="Rating til"/>
             </div>
           </div>
 
           <div class="filter-actions">
-            <button id="header-clear-filters" class="clear-btn">
-              Ryd alle filtre
-            </button>
+            <button id="header-clear-filters" class="clear-btn">Ryd alle filtre</button>
             <button id="filter-close" class="close-btn">Vis resultater</button>
           </div>
         </div>
@@ -161,9 +107,9 @@
     <main>
       <section>
         <div class="games-header">
-          <h1>Alle spil</h1>
+          <h1>Spiloversigt</h1>
           <div class="sort-controls">
-            <select id="main-sort-select">
+            <select id="main-sort-select" aria-label="Sortér efter">
               <option value="all">Sortér efter</option>
               <option value="title">Titel (A-Å)</option>
               <option value="title2">Titel (Å-A)</option>
@@ -174,11 +120,7 @@
       </section>
 
       <!-- Aktiv filtrerings display -->
-      <section
-        class="active-filters-section"
-        id="active-filters-section"
-        style="display: none"
-      >
+      <section class="active-filters-section" id="active-filters-section" style="display: none">
         <div class="active-filters-container">
           <div class="active-filters-list" id="active-filters-list">
           </div>
@@ -187,14 +129,15 @@
 
       <!-- Game List -->
       <section id="game-list"></section>
+
     </main>
 
     <!-- Game Modal -->
     <dialog id="game-dialog">
       <form method="dialog">
-        <button id="close-dialog" aria-label="Close">✕</button>
+        <button id="close-dialog" aria-label="Luk">✕</button>
         <div id="dialog-content">
-          <!-- Game details will be injected here via JavaScript -->
+          <!-- Game indsættes her via JavaScript -->
         </div>
       </form>
     </dialog>
