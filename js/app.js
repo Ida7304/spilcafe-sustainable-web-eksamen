@@ -22,7 +22,7 @@ function initApp() {
 
   // ===== MAIN SORTERING =====
   // Sort dropdown ved siden af "Alle spil" overskriften - alternativ til header sort
-  document.querySelector("#main-sort-select").addEventListener("change", filterGames);
+  // document.querySelector("#main-sort-select").addEventListener("change", filterGames);
     
 
   // ===== SPILLETID RANGE FILTRERING =====
@@ -195,8 +195,8 @@ function initFilterPanel() {
       activeFilters++;
     if (document.querySelector("#header-sort-select").value !== "all")
       activeFilters++;
-    if (document.querySelector("#main-sort-select").value !== "all")
-      activeFilters++;
+    // if (document.querySelector("#main-sort-select").value !== "all")
+    //   activeFilters++;
     if (document.querySelector("#header-difficulty-select").value !== "none")
       activeFilters++;
 
@@ -233,7 +233,7 @@ function initFilterPanel() {
   const filterInputs = [
     "#header-genre-select",
     "#header-sort-select",
-    "#main-sort-select",
+    // "#main-sort-select",
     "#header-playtime-from",
     "#header-playtime-to",
     "#header-rating-from",
@@ -382,9 +382,10 @@ function filterGames() {
 
   // Sorterings variable - tjek begge sort dropdowns
   const headerSortValue = document.querySelector("#header-sort-select").value;
-  const mainSortValue = document.querySelector("#main-sort-select").value;
+  // const mainSortValue = document.querySelector("#main-sort-select").value;
   // Brug main sort som primær, fallback til header sort
-  const sortValue = mainSortValue !== "all" ? mainSortValue : headerSortValue;
+  // const sortValue = mainSortValue !== "all" ? mainSortValue : headerSortValue;
+ const sortValue = document.querySelector("#header-sort-select").value;
 
   // Location variable - fra header
   const locationValue = document.querySelector("#location-select").value;
@@ -557,7 +558,7 @@ function getActiveFilters() {
 
   // Sortering
   const headerSortValue = document.querySelector("#header-sort-select").value;
-  const mainSortValue = document.querySelector("#main-sort-select").value;
+  // const mainSortValue = document.querySelector("#main-sort-select").value;
   const activeSortValue =
     mainSortValue !== "all" ? mainSortValue : headerSortValue;
 
@@ -667,7 +668,7 @@ function removeFilter(filter) {
     case "sort":
       // Reset både header og main sort
       document.querySelector("#header-sort-select").value = "all";
-      document.querySelector("#main-sort-select").value = "all";
+      // document.querySelector("#main-sort-select").value = "all";
       break;
     case "playtime":
       document.querySelector("#header-playtime-from").value = "";
@@ -709,7 +710,7 @@ function clearAllFilters() {
   document.querySelector("#header-difficulty-select").value = "none";
 
   // Ryd main sort dropdown
-  document.querySelector("#main-sort-select").value = "all";
+  // document.querySelector("#main-sort-select").value = "all";
 
   // Ryd de nye range felter - header version
   document.querySelector("#header-playtime-from").value = "";

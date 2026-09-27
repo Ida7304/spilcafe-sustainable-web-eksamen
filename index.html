@@ -10,10 +10,36 @@
 
   <body>
     <header>
-      <a href="index.html">
-        <img src="Images/Logo spilcafeen.png" alt="spilcafé logo hjem" class="logo"/>
-      </a>
-      <!-- Location filter i midten -->
+        <a href="index.html">
+         <img src="Images/Logo spilcafeen.png" alt="spilcafé logo hjem" class="logo"/>
+         </a>
+        <a href="profilside.html" class="bottom-nav-item">
+          <div class="bottom-nav-icon">
+            <img src="Images/bruger.svg" alt="Bruger" />
+          </div>
+        </a>
+        <a href="favoritside.html" class="bottom-nav-item">
+          <div class="bottom-nav-icon">
+            <img src="Images/hejrte.svg" alt="Favoritter" />
+          </div>
+        </a>   
+    </header>
+
+    <main>
+      <section>
+        <div class="games-header">
+          <h1>Spiloversigt</h1>
+          <div class="sort-controls">
+            <!-- <select id="main-sort-select" aria-label="Sortér efter">
+              <option value="all">Sortér efter</option>
+              <option value="title">Titel (A-Å)</option>
+              <option value="title2">Titel (Å-A)</option>
+              <option value="rating">Mest populære</option>
+            </select> -->
+          </div>
+        </div>
+      </section>
+<!-- Location filter i midten -->
       <div class="header-location">
         <select id="location-select" class="location-dropdown" aria-label="Vælg lokation">
           <option value="all">Alle lokationer</option>
@@ -102,23 +128,6 @@
           </div>
         </div>
       </div>
-    </header>
-
-    <main>
-      <section>
-        <div class="games-header">
-          <h1>Spiloversigt</h1>
-          <div class="sort-controls">
-            <select id="main-sort-select" aria-label="Sortér efter">
-              <option value="all">Sortér efter</option>
-              <option value="title">Titel (A-Å)</option>
-              <option value="title2">Titel (Å-A)</option>
-              <option value="rating">Mest populære</option>
-            </select>
-          </div>
-        </div>
-      </section>
-
       <!-- Aktiv filtrerings display -->
       <section class="active-filters-section" id="active-filters-section" style="display: none">
         <div class="active-filters-container">
@@ -142,29 +151,7 @@
       </form>
     </dialog>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="bottom-nav">
-      <a href="index.html" class="bottom-nav-item bottom-nav-active">
-        <div class="bottom-nav-icon">
-          <img src="Images/hus-farvet.svg" alt="Hjem" />
-        </div>
-      </a>
-      <a href="profilside.html" class="bottom-nav-item">
-        <div class="bottom-nav-icon">
-          <img src="Images/bruger.svg" alt="Bruger" />
-        </div>
-      </a>
-      <a href="favoritside.html" class="bottom-nav-item">
-        <div class="bottom-nav-icon">
-          <img src="Images/hejrte.svg" alt="Favoritter" />
-        </div>
-      </a>
-      <a href="burgermenu.html" class="bottom-nav-item">
-        <div class="bottom-nav-icon">
-          <img src="Images/burgermenu.svg" alt="Burgermenu" />
-        </div>
-      </a>
-    </nav>
+ 
 
     <script src="js/app.js"></script>
 

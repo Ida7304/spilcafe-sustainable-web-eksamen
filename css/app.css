@@ -180,62 +180,6 @@ p {
 }
 
 
-/* =====================
-   BOTTOM NAVIGATION BAR
-   ===================== */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--primary);
-  border-top: 1px solid rgba(172, 198, 201, 0.2);
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px) saturate(180%);
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 10px calc(0.5rem + env(safe-area-inset-bottom)) 10px; /* 10px yderste margin */
-}
-
-.bottom-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  color: var(--text-light);
-  transition: var(--transition);
-  border-radius: 0.75rem;
-  flex: 1;
-  text-align: center;
-}
-
-.bottom-nav-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.25rem;
-  transition: var(--transition);
-}
-
-.bottom-nav-item:hover {
-  color: var(--primary);
-  background: rgba(199, 2, 0, 0.1);
-}
-
-.bottom-nav-item:hover .bottom-nav-icon {
-  transform: scale(1.1);
-}
-
-.bottom-nav-active {
-  color: var(--primary) !important;
-  background: rgba(199, 2, 0, 0.15);
-}
-
-.bottom-nav-active .bottom-nav-icon {
-  transform: scale(1.1);
-}
 
 /* ===========================================
    NO FAVORITES MESSAGE + NO PROFILE MESSAGAE
@@ -288,21 +232,15 @@ p {
    ============================= */
 
   header {
-  background: #FAFAFA;
-  backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(172, 198, 201, 0.2);
   color: var(--text);
-  padding: 1rem 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: var(--transition);
-  box-shadow: var(--shadow);
+  background: var(--primary);
 }
 
 .logo {
@@ -428,7 +366,6 @@ p {
 /* Filter panel dropdown */
 .filter-panel {
   position: absolute;
-  top: 100%;
   right: 2rem;
   background: var(--bg);
   border: 1px solid var(--secondary);
@@ -438,7 +375,7 @@ p {
   min-width: 400px;
   max-height: 80vh;
   overflow-y: auto;
-  z-index: 1001;
+  z-index: 900;
   display: none;
 }
 
@@ -946,13 +883,13 @@ dialog#game-dialog::backdrop {
 
 /* BOTTOM NAVIGATION RESPONSIVE STYLING*/
 
-  .bottom-nav-item {
+  .nav-item {
     padding: 0.4rem 1rem;
     margin: 0 0.25rem;
     min-width: 70px;
   }
   
-  .bottom-nav-icon {
+  .nav-icon {
     font-size: 1.25rem;
     margin-bottom: 0.2rem;
   }
