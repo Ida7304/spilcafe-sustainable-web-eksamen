@@ -124,7 +124,9 @@ function displayFavoriteGame(game) {
   const gameHTML = `
     <article class="game-card">
         <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster" />
-        <img src="Images/Favorit fyldt ikon.png" alt="Favorit" class="favorite-icon" onclick="toggleFavorite(event, '${game.title}')">
+        <button type="button"  class="favorite-button" aria-label="Fjern ${game.title} fra favoritter">
+          <img src="Images/Favorit fyldt ikon.png" alt="favorit" class="favorite-icon">
+        </button>
       <div class="game-info">
         <h2>${game.title} <span class="game-rating"><img src="Images/Stjerne ikon.png" alt="Rating" class="rating-icon"> ${game.rating}</span></h2>
         <p class="game-shelf">Hylde ${game.shelf}</p>
@@ -140,6 +142,10 @@ function displayFavoriteGame(game) {
   // Tilføj click event til hele kortet for at åbne modal
   const gameCard = gameList.lastElementChild;
   gameCard.addEventListener("click", () => showGameModal(game));
+  const favoriteButton = gameCard.querySelector(".favorite-button");
+  favoriteButton.addEventListener("click", function(event){
+    toggleFavorite(event, game.title);
+  });
 }
 
 // Opdater antal favoritter i header
