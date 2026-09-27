@@ -295,7 +295,7 @@ function displayGame(game) {
 
 
   const gameHTML = `
-    <article class="game-card">
+    <article class="game-card" tabindex="0">
         <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster"/>
           <button type="button" class="favorite-button" aria-label="${favoriteAriaLabel}">
             <img src="${favoriteIconSrc}" alt="Favorit" class="favorite-icon">
