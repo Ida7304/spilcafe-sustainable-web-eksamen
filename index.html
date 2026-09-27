@@ -9,6 +9,7 @@
   </head>
 
   <body>
+<!-- Header/Navigation -->
     <header>
         <a href="index.html">
          <img src="Images/Logo spilcafeen.png" alt="spilcafé logo hjem" class="logo"/>
@@ -27,6 +28,7 @@
         </div>
     </header>
 
+    <!-- Overskrift -->
     <main>
       <section>
         <div class="games-header">
@@ -34,14 +36,14 @@
         </div>
       </section>
 
-<!-- Location filter i midten -->
+      <!-- Lokation filter -->
       <div class="header-location">
         <select id="location-select" class="location-dropdown" aria-label="Vælg lokation">
           <option value="all">Alle lokationer</option>
         </select>
     
 
-      <!-- Søgefelt og filter -->
+      <!-- Søgefelt og filtre -->
       <div class="header-controls">
         <form class="header-search" role="search">
           <input type="search" id="header-search-input" placeholder="Søg spil..." aria-label="Søg spil"/>
@@ -57,7 +59,8 @@
       <div class="filter-panel" id="filter-panel">
         <div class="filter-panel-content">
           <h3>Filtrér spil</h3>
-
+          
+          <!-- Valgmuligheder -->
           <div class="filter-row">
             <label for="header-sort-select">Sortér efter</label>
             <select id="header-sort-select">
@@ -67,21 +70,21 @@
               <option value="rating">Mest populære</option>
             </select>
           </div>
-
+          <!-- Kategori filter -->
           <div class="filter-row">
             <label for="header-genre-select">Kategori</label>
             <select id="header-genre-select">
               <option value="none">Alle kategorier</option>
             </select>
           </div>
-
+          <!-- Antal spillere filter -->
           <div class="filter-row">
             <label for="header-players-from">Antal spillere</label>
             <div class="range-inputs">
               <input type="number" id="header-players-from" placeholder="Fra" min="1" max="8" step="1"/>
             </div>
           </div>
-
+          <!-- Spilletid filter -->
           <div class="filter-row">
             <label for="header-playtime-from">Spilletid (min):</label>
             <div class="range-inputs">
@@ -90,7 +93,7 @@
               <input type="number" id="header-playtime-to" placeholder="Til" min="0" max="300" step="15" aria-label="Spilletid til"/>
             </div>
           </div>
-
+          <!-- Sværhedsgrad filter -->
           <div class="filter-row">
             <label for="header-difficulty-select">Sværhedsgrad</label>
             <select id="header-difficulty-select">
@@ -100,14 +103,14 @@
               <option value="Svær">Svær</option>
             </select>
           </div>
-
+          <!-- Alder filter -->
           <div class="filter-row">
             <label for="header-age-from">Min. Alder</label>
             <div class="range-inputs">
               <input type="number" id="header-age-from" placeholder="Fra" min="0" max="100" step="1"/>
             </div>
           </div>
-
+          <!-- Rating filter -->
           <div class="filter-row">
             <label for="header-rating-from">Rating:</label>
             <div class="range-inputs">
@@ -116,7 +119,7 @@
               <input type="number" id="header-rating-to" placeholder="Til" min="0" max="5" step="1" aria-label="Rating til"/>
             </div>
           </div>
-
+          <!-- Ryd/vis resultater -->
           <div class="filter-actions">
             <button id="header-clear-filters" class="clear-btn">Ryd alle filtre</button>
             <button id="filter-close" class="close-btn">Vis resultater</button>
@@ -131,17 +134,17 @@
         </div>
       </section>
       </div>
-      <!-- Game List -->
+      <!-- Spilliste -->
       <section id="game-list"></section>
   
     </main>
 
-    <!-- Game Modal -->
+    <!-- Spil pop op -->
     <dialog id="game-dialog">
       <form method="dialog">
         <button id="close-dialog" aria-label="Luk">✕</button>
         <div id="dialog-content">
-          <!-- Game indsættes her via JavaScript -->
+          <!-- Spil indsættes her via JavaScript -->
         </div>
       </form>
     </dialog>
