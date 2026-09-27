@@ -695,6 +695,7 @@ dialog#game-dialog::backdrop {
   overflow-y: auto;
   max-height: 90vh;
   text-align: center;
+  display: flex;
 }
 
 .game-poster-container {
