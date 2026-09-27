@@ -268,7 +268,12 @@ gap: 5rem;
 .header-location {
   display: flex;
   justify-content: end;
-  gap: 6rem;
+  gap: 1rem 6rem;
+  flex-wrap: wrap;
+}
+
+.active-filters-section {
+  width: 100%;
 }
 
 .header-location select {

@@ -294,7 +294,9 @@ function displayGame(game) {
   const gameHTML = `
     <article class="game-card">
         <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster" />
-        <img src="${favoriteIconSrc}" alt="Favorit" class="favorite-icon" onclick="toggleFavorite(event, '${game.title}')">
+          <button type="button" class="favorite-button" aria-label="Tilføj ${game.title} til favoritter">
+            <img src="${favoriteIconSrc}" alt="Favorit" class="favorite-icon">
+          </button>
       <div class="game-info">
         <h3>${game.title} <span class="game-rating"><img src="Images/Stjerne ikon.png" alt="Rating" class="rating-icon"> ${game.rating}</span></h3>
         <p class="game-shelf">Hylde ${game.shelf}</p>
@@ -321,7 +323,17 @@ function displayGame(game) {
       showGameModal(game);
     }
   });
+
+  const favoriteButton = newCard.querySelector(".favorite-button");
+
+  favoriteButton.addEventListener("click", function (event) {
+    toggleFavorite(event, game.title);
+  });
+
 }
+
+
+
 // Husk: game.players er et OBJECT!
 // Er der andre properties, du skal tænke over?
 
@@ -382,10 +394,11 @@ function filterGames() {
 
   // Sorterings variable - tjek begge sort dropdowns
   const headerSortValue = document.querySelector("#header-sort-select").value;
-  // const mainSortValue = document.querySelector("#main-sort-select").value;
+
   // Brug main sort som primær, fallback til header sort
-  // const sortValue = mainSortValue !== "all" ? mainSortValue : headerSortValue;
+
  const sortValue = document.querySelector("#header-sort-select").value;
+console.log("Sort value i filterGames:", sortValue);
 
   // Location variable - fra header
   const locationValue = document.querySelector("#location-select").value;
@@ -426,7 +439,7 @@ function filterGames() {
   console.log("🔄 Filtrerer games...");
 
   // Start med alle games
-  let filteredGames = allGames;
+  let filteredGames = [...allGames];
 
   // TRIN 1: Filtrer på søgetekst
   if (searchValue) {
@@ -557,10 +570,8 @@ function getActiveFilters() {
   }
 
   // Sortering
-  const headerSortValue = document.querySelector("#header-sort-select").value;
-  // const mainSortValue = document.querySelector("#main-sort-select").value;
-  const activeSortValue =
-    mainSortValue !== "all" ? mainSortValue : headerSortValue;
+
+  const activeSortValue = document.querySelector("#header-sort-select").value;
 
   if (activeSortValue !== "all") {
     const sortLabels = {
@@ -693,7 +704,6 @@ function removeFilter(filter) {
   if (window.updateFilterBadge) {
     window.updateFilterBadge();
   }
-
   // Kør filter igen for at opdatere listen
   filterGames();
 }
@@ -808,7 +818,9 @@ function showGameModal(game) {
   dialogContent.innerHTML = `
    <div class="game-poster-container">
      <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster" />
-     <img src="${favoriteIconSrc}" alt="Favorit" class="favorite-icon" onclick="toggleFavorite(event, '${game.title}')">
+      <button type="button" class="favorite-button" aria-label="Tilføj ${game.title} til favoritter">
+        <img src="${favoriteIconSrc}" alt="Favorit" class="favorite-icon">
+      </button>
    </div>
    <div class="dialog-game-info">
       <h1>${game.title} </h1>
@@ -825,6 +837,11 @@ function showGameModal(game) {
       <p class="game-rules">${game.rules}</p>
       </div>
   `;
+const favoriteButton = dialogContent.querySelector(".favorite-button");
+
+favoriteButton.addEventListener("click", function (event) {
+  toggleFavorite(event, game.title);
+});
 
   // Åbn modalen og forhindre baggrunds scroll
   document.body.classList.add("modal-open");
