@@ -180,6 +180,26 @@ p {
 }
 
 
+/* =====================
+     NAVIGATION BAR
+   ===================== */
+
+.ikoner {
+display: flex;
+align-items: center;
+margin-left: auto;
+padding-right: 5rem;
+gap: 5rem;
+}
+
+.nav-icon {
+  transition: var(--transition);
+}
+
+.nav-item:hover .nav-icon {
+  transform: scale(1.1);
+}
+
 
 /* ===========================================
    NO FAVORITES MESSAGE + NO PROFILE MESSAGAE
@@ -274,7 +294,7 @@ p {
   box-shadow: 0 0 0 2px rgba(199, 2, 0, 0.1);
 }
 
-/* HEADER CONTROLS (SEARCH + FILTER) */  /* Højre side af header */
+/* Search og filter */
 .header-controls {
   display: flex;
   align-items: center;
