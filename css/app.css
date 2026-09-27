@@ -498,10 +498,6 @@ gap: 5rem;
   box-shadow: var(--shadow-lg);
 }
 
-.game-card:focus {
-  outline: 3px solid var(--secondary);
-  outline-offset: 2px;
-}
 
 .game-poster {
   width: 100%;
@@ -920,6 +916,7 @@ dialog#game-dialog::backdrop {
   .header-controls {
     position: static;
     margin: 0;
+    gap: 3rem;
   }
   .header-search input {
     width: 100px;
@@ -928,7 +925,7 @@ dialog#game-dialog::backdrop {
     padding: 1rem;
   }
 
-/* Smartphones/iPhone (breakpoints) */
+  /* Smartphones/iPhone (breakpoints) */
   dialog#game-dialog {
   max-width: 100vw;
   width: 100vw;

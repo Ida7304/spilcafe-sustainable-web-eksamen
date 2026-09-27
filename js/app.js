@@ -22,7 +22,6 @@ function initApp() {
 
   // ===== MAIN SORTERING =====
   // Sort dropdown ved siden af "Alle spil" overskriften - alternativ til header sort
-  // document.querySelector("#main-sort-select").addEventListener("change", filterGames);
     
 
   // ===== SPILLETID RANGE FILTRERING =====
@@ -233,7 +232,6 @@ function initFilterPanel() {
   const filterInputs = [
     "#header-genre-select",
     "#header-sort-select",
-    // "#main-sort-select",
     "#header-playtime-from",
     "#header-playtime-to",
     "#header-rating-from",
@@ -291,10 +289,15 @@ function displayGame(game) {
     ? "Images/Favorit fyldt ikon.png"
     : "Images/Favorit tomt ikon.png";
 
+  const favoriteAriaLabel = isFavorite(game.title)
+    ? `Fjern ${game.title} fra favoritter`
+    : `Tilføj ${game.title} til favoritter`
+
+
   const gameHTML = `
     <article class="game-card">
-        <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster" />
-          <button type="button" class="favorite-button" aria-label="Tilføj ${game.title} til favoritter">
+        <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster"/>
+          <button type="button" class="favorite-button" aria-label="${favoriteAriaLabel}">
             <img src="${favoriteIconSrc}" alt="Favorit" class="favorite-icon">
           </button>
       <div class="game-info">
@@ -392,13 +395,9 @@ function filterGames() {
   // Kategori (genre) variable
   const genreValue = document.querySelector("#header-genre-select").value;
 
-  // Sorterings variable - tjek begge sort dropdowns
-  const headerSortValue = document.querySelector("#header-sort-select").value;
 
-  // Brug main sort som primær, fallback til header sort
+  const sortValue = document.querySelector("#header-sort-select").value;
 
- const sortValue = document.querySelector("#header-sort-select").value;
-console.log("Sort value i filterGames:", sortValue);
 
   // Location variable - fra header
   const locationValue = document.querySelector("#location-select").value;
@@ -739,16 +738,16 @@ function clearAllFilters() {
   filterGames();
 }
 
-// ===== MODAL =====
+// ===== POP OP =====
 
 // ===== FAVORIT SYSTEM =====
 
 // Håndter favorit klik
 function toggleFavorite(event, gameTitle) {
   event.stopPropagation(); // Forhindrer at game card også bliver klikket
+  
   const favoriteIcon = event.target;
-
-
+  const favoriteButton = event.currentTarget;
   // Hent eksisterende favoritter fra localStorage
   let favorites = getFavorites();
 
@@ -768,6 +767,13 @@ function toggleFavorite(event, gameTitle) {
     saveFavorites(favorites);
     console.log(`💔 Fjernet fra favoritter: ${gameTitle}`);
   }
+
+  favoriteButton.setAttribute(
+  "aria-label",
+  favorites.includes(gameTitle)
+    ? `Fjern ${gameTitle} fra favoritter`
+    : `Tilføj ${gameTitle} til favoritter`
+);
 
   // Opdater alle ikoner for dette spil (både i grid og dialog)
   updateFavoriteIcons(gameTitle, favorites.includes(gameTitle));
@@ -789,12 +795,6 @@ function updateFavoriteIcons(gameTitle, isFavorite) {
   const iconSrc = isFavorite
     ? "Images/Favorit fyldt ikon.png"
     : "Images/Favorit tomt ikon.png";
-
-  // Find alle ikoner for dette spil (både i grid og dialog)
-  const allIcons = document.querySelectorAll(`img[onclick*="${gameTitle}"]`);
-  allIcons.forEach((icon) => {
-    icon.src = iconSrc;
-  });
 }
 
 // Tjek om et spil er favorit
@@ -815,10 +815,14 @@ function showGameModal(game) {
     ? "Images/Favorit fyldt ikon.png"
     : "Images/Favorit tomt ikon.png";
 
+  const favoriteAriaLabel = isFavorite(game.title)
+    ? `Fjern ${game.title} fra favoritter`
+    : `Tilføj ${game.title} til favoritter`
+
   dialogContent.innerHTML = `
    <div class="game-poster-container">
-     <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster" />
-      <button type="button" class="favorite-button" aria-label="Tilføj ${game.title} til favoritter">
+     <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster" loading="lazy" />
+      <button type="button" class="favorite-button" aria-label="${favoriteAriaLabel}">
         <img src="${favoriteIconSrc}" alt="Favorit" class="favorite-icon">
       </button>
    </div>
