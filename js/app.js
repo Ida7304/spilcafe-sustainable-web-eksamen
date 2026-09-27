@@ -321,7 +321,8 @@ function displayGame(game) {
 
   // Tilføj keyboard support
   newCard.addEventListener("keydown", function (event) {
-    if (event.key === "Enter" || event.key === " ") {
+    if ((event.key === "Enter" || event.key === " ") &&
+      event.target===newCard) {
       event.preventDefault();
       showGameModal(game);
     }
@@ -332,6 +333,13 @@ function displayGame(game) {
   favoriteButton.addEventListener("click", function (event) {
     toggleFavorite(event, game.title);
   });
+
+  favoriteButton.addEventListener("keydown", function (event){
+    if (event.key === "Enter" || event.key === " "){
+      event.preventDefault();
+      toggleFavorite(event, game.title);
+}
+});
 
 }
 
@@ -746,8 +754,8 @@ function clearAllFilters() {
 function toggleFavorite(event, gameTitle) {
   event.stopPropagation(); // Forhindrer at game card også bliver klikket
   
-  const favoriteIcon = event.target;
-  const favoriteButton = event.currentTarget;
+  const favoriteButton = event.target;
+  const favoriteIcon = favoriteButton.querySelector(".favorite-icon");
   // Hent eksisterende favoritter fra localStorage
   let favorites = getFavorites();
 
