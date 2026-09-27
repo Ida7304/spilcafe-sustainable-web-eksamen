@@ -738,11 +738,12 @@ function toggleFavorite(event, gameTitle) {
   event.stopPropagation(); // Forhindrer at game card også bliver klikket
   const favoriteIcon = event.target;
 
+
   // Hent eksisterende favoritter fra localStorage
   let favorites = getFavorites();
 
   // Toggle mellem tomt og fyldt hjerte
-  if (favoriteIcon.src.includes("Favorit tomt ikon.png")) {
+  if (favoriteIcon.src.includes("Favorit%20tomt%20ikon.png")) {
     favoriteIcon.src = "Images/Favorit fyldt ikon.png";
     // Tilføj til favoritter
     if (!favorites.includes(gameTitle)) {
