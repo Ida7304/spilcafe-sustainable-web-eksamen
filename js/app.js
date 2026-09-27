@@ -829,7 +829,7 @@ function showGameModal(game) {
 
   dialogContent.innerHTML = `
    <div class="game-poster-container">
-     <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster" loading="lazy" />
+     <img src="${game.image}" alt="Poster of ${game.title}" class="game-poster"/>
       <button type="button" class="favorite-button" aria-label="${favoriteAriaLabel}">
         <img src="${favoriteIconSrc}" alt="Favorit" class="favorite-icon">
       </button>

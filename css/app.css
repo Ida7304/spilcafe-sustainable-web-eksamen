@@ -221,6 +221,7 @@ gap: 5rem;
   right: 0;
   z-index: 1000;
   background: var(--primary);
+  margin-bottom: -5rem;
 }
 
 .logo {
@@ -757,7 +758,6 @@ dialog#game-dialog::backdrop {
 .games-header {
   display: flex;
   margin-bottom: 2rem;
-  padding: 0 1rem;
   justify-content: center;
 }
 
