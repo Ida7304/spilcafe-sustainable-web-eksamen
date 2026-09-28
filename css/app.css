@@ -39,11 +39,7 @@ body {
   font-family: poppins-medium, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #FAFAFA;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-color: var(--bg);
   color: var(--text);
   min-height: 100vh;
   display: flex;
@@ -292,12 +288,6 @@ gap: 5rem;
   box-shadow: 0 0 0 2px rgba(199, 2, 0, 0.1);
 }
 
-/* Filtrering-ikon styling */
-.filter-icon {
-  width: 24px;
-  height: 24px;
-  transition: var(--transition);
-}
 
 /* Filtrering toggle button */
 .filter-toggle {
@@ -324,14 +314,6 @@ gap: 5rem;
   background: var(--primary);
   color: white;
   border-color: var(--primary);
-}
-
-.filter-toggle:hover .filter-icon {
-  filter: brightness(0) invert(1); /* Gør billedet hvidt ved hover */
-}
-
-.filter-toggle.active .filter-icon {
-  filter: brightness(0) invert(1); /* Gør billedet hvidt når aktiv */
 }
 
 /* Filtrering badge (antal aktive filtre) */
@@ -515,15 +497,6 @@ gap: 5rem;
   padding: 1.5rem;
 }
 
-.game-info h2 {
-  color: var(--text);
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
 .game-genre {
   color: var(--text-light);
   font-size: 0.9rem;
@@ -660,8 +633,6 @@ dialog#game-dialog::backdrop {
 
 #dialog-content {
   padding: 2rem;
-  display: grid;
-  grid-template-columns: 1fr;
   gap: 2rem;
   align-items: start;
   overflow-y: auto;
@@ -762,23 +733,6 @@ dialog#game-dialog::backdrop {
 }
 
 
-.sort-controls select {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  background: var(--bg-card);
-  color: var(--text);
-  font-size: 0.9rem;
-  min-width: 150px;
-}
-
-.sort-controls select:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
-
-
 /* ==================
    RESPONSIVT DESIGN
    ================== */
@@ -791,12 +745,6 @@ dialog#game-dialog::backdrop {
     align-items: baseline;
     gap: 0.5rem;
     margin-top: 2rem;
-  }
-
-  .sort-controls select {
-    font-size: 0.8rem;
-    min-width: 120px;
-    padding: 0.4rem;
   }
 
   .active-filters-container {
@@ -848,7 +796,6 @@ dialog#game-dialog::backdrop {
 /* RESPONSIVT DESIGN FOR DIALOG MODALET */
 
   #dialog-content {
-    grid-template-columns: 1fr;
     padding: 1.5rem;
     gap: 1.5rem;
     text-align: center;
