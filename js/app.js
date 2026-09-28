@@ -20,10 +20,6 @@ function initApp() {
   // Sort dropdown i header - sortér spil når bruger ændrer sortering
   document.querySelector("#header-sort-select").addEventListener("change", filterGames);
 
-  // ===== MAIN SORTERING =====
-  // Sort dropdown ved siden af "Alle spil" overskriften - alternativ til header sort
-    
-
   // ===== SPILLETID RANGE FILTRERING =====
   // "Fra" spilletid felt - auto-udfyldning af "til" felt
   document.querySelector("#header-playtime-from").addEventListener("input", function () {
@@ -194,8 +190,6 @@ function initFilterPanel() {
       activeFilters++;
     if (document.querySelector("#header-sort-select").value !== "all")
       activeFilters++;
-    // if (document.querySelector("#main-sort-select").value !== "all")
-    //   activeFilters++;
     if (document.querySelector("#header-difficulty-select").value !== "none")
       activeFilters++;
 
@@ -686,7 +680,6 @@ function removeFilter(filter) {
     case "sort":
       // Reset både header og main sort
       document.querySelector("#header-sort-select").value = "all";
-      // document.querySelector("#main-sort-select").value = "all";
       break;
     case "playtime":
       document.querySelector("#header-playtime-from").value = "";
@@ -726,9 +719,6 @@ function clearAllFilters() {
   document.querySelector("#header-sort-select").value = "all";
   document.querySelector("#header-difficulty-select").value = "none";
 
-  // Ryd main sort dropdown
-  // document.querySelector("#main-sort-select").value = "all";
-
   // Ryd de nye range felter - header version
   document.querySelector("#header-playtime-from").value = "";
   document.querySelector("#header-playtime-to").value = "";
@@ -754,7 +744,7 @@ function clearAllFilters() {
 function toggleFavorite(event, gameTitle) {
   event.stopPropagation(); // Forhindrer at game card også bliver klikket
   
-  const favoriteButton = event.target;
+  const favoriteButton = event.currentTarget;
   const favoriteIcon = favoriteButton.querySelector(".favorite-icon");
   // Hent eksisterende favoritter fra localStorage
   let favorites = getFavorites();

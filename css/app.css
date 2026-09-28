@@ -85,6 +85,7 @@ p {
 .active-filters-section {
   padding: 0 1rem 1rem;
   margin-top: -1rem;
+  width: 100%;
 }
 
 .active-filters-container {
@@ -223,7 +224,6 @@ gap: 5rem;
 .logo {
   height: 80px;
   margin-left: 1rem;
-  justify-self: start;
 }
 
 /* LOKATIONS DROPDOWN */
@@ -234,9 +234,6 @@ gap: 5rem;
   flex-wrap: wrap;
 }
 
-.active-filters-section {
-  width: 100%;
-}
 
 .header-location select {
   padding: 0.75rem 0.5rem;
@@ -264,12 +261,8 @@ gap: 5rem;
   align-items: center;
   gap: 1rem;
   margin-right: 2rem;
-  justify-self: end;
 }
 
-.header-search {
-  position: relative;
-}
 
 .header-search input {
   padding: 0.75rem 1rem;
@@ -709,18 +702,6 @@ dialog#game-dialog::backdrop {
   outline-offset: 2px;
 }
 
-/* Styling af hjerte ikon på detaljeside - samme styling som game cards */
-
-#dialog-content .favorite-icon {
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  padding: 6px;
-  transition: transform 0.2s ease, background 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
 
 /* =================================
    SPILOVERSIGT STYLING (ALLE SPIL–OVERSIGT)
@@ -758,16 +739,12 @@ dialog#game-dialog::backdrop {
     padding: 0.4rem 0.8rem;
   }
   header {
-    grid-template-columns: auto 1fr auto;
     gap: 0.5rem;
     padding: 0.75rem 0;
   }
   .logo {
     height: 60px;
     margin-left: 0.5rem;
-  }
-  .header-location {
-    justify-self: center;
   }
   .header-location select {
     min-width: 120px;
@@ -816,11 +793,7 @@ dialog#game-dialog::backdrop {
     min-width: 70px;
   }
   
-  .nav-icon {
-    font-size: 1.25rem;
-    margin-bottom: 0.2rem;
-  }
-  
+ 
 /* NO FAVORITES RESPONSIVE STYLING */
   .no-favorites {
    padding: 2rem 1rem;
@@ -846,17 +819,14 @@ dialog#game-dialog::backdrop {
     text-align: center;
   }
   .logo {
-    justify-self: center;
     margin: 0;
     height: 50px;
   }
   .header-location {
     flex-direction: column;
     align-items: center;
-    justify-self: center;
   }
   .header-controls {
-    position: static;
     margin: 0;
     gap: 3rem;
   }
