@@ -337,11 +337,6 @@ function displayGame(game) {
 
 }
 
-
-
-// Husk: game.players er et OBJECT!
-// Er der andre properties, du skal tænke over?
-
 // ===== FILTRERING =====
 
 // Dropdownmenu med genre
@@ -736,7 +731,6 @@ function clearAllFilters() {
   filterGames();
 }
 
-// ===== POP OP =====
 
 // ===== FAVORIT SYSTEM =====
 
@@ -773,8 +767,6 @@ function toggleFavorite(event, gameTitle) {
     : `Tilføj ${gameTitle} til favoritter`
 );
 
-  // Opdater alle ikoner for dette spil (både i grid og dialog)
-  updateFavoriteIcons(gameTitle, favorites.includes(gameTitle));
 }
 
 // Hent favoritter fra localStorage
@@ -788,12 +780,6 @@ function saveFavorites(favorites) {
   localStorage.setItem("gamesFavorites", JSON.stringify(favorites));
 }
 
-// Opdater alle favorit-ikoner for et specifikt spil
-function updateFavoriteIcons(gameTitle, isFavorite) {
-  const iconSrc = isFavorite
-    ? "Images/Favorit fyldt ikon.png"
-    : "Images/Favorit tomt ikon.png";
-}
 
 // Tjek om et spil er favorit
 function isFavorite(gameTitle) {

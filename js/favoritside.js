@@ -11,59 +11,11 @@ let favoriteGames = [];
 function initFavoritesApp() {
   console.log("initFavoritesApp: favorites.js is running 🎉");
   getFavoriteGames();
-  
-  // Header søgefelt og filtre (samme som main app)
-  document.querySelector("#header-search-input").addEventListener("input", filterFavorites);
-  document.querySelector("#header-genre-select").addEventListener("change", filterFavorites);
-  document.querySelector("#header-sort-select").addEventListener("change", filterFavorites);
-
-  // Playtime felter
-  document.querySelector("#header-playtime-from").addEventListener("input", filterFavorites);
-  document.querySelector("#header-playtime-to").addEventListener("input", filterFavorites);
-
-  // Rating felter
-  document.querySelector("#header-rating-from").addEventListener("input", filterFavorites);
-  document.querySelector("#header-rating-to").addEventListener("input", filterFavorites);
-
-  // Spillere felt
-  document.querySelector("#header-players-from").addEventListener("input", filterFavorites);
-
-  // Sværhedsgrad felt
-  document.querySelector("#header-difficulty-select").addEventListener("change", filterFavorites);
-
-  // Min. Alder felt
-  document.querySelector("#header-age-from").addEventListener("input", filterFavorites);
-
-  // Location dropdown
-  document.querySelector("#location-select").addEventListener("change", filterFavorites);
-
-  // Clear filters knap
-  document.querySelector("#header-clear-filters").addEventListener("click", clearAllFilters);
 
   // Close dialog button
   document.querySelector("#close-dialog").addEventListener("click", () => {
     document.querySelector("#game-dialog").close();
     document.body.classList.remove('modal-open');
-  });
-
-  // Filter panel toggle functionality
-  const filterToggle = document.querySelector("#filter-toggle");
-  const filterPanel = document.querySelector("#filter-panel");
-  const closeFilterPanel = document.querySelector("#close-filter-panel");
-
-  filterToggle.addEventListener("click", () => {
-    filterPanel.classList.toggle("open");
-  });
-
-  closeFilterPanel.addEventListener("click", () => {
-    filterPanel.classList.remove("open");
-  });
-
-  // Luk filter panel hvis man klikker udenfor
-  document.addEventListener("click", (event) => {
-    if (!filterToggle.contains(event.target) && !filterPanel.contains(event.target)) {
-      filterPanel.classList.remove("open");
-    }
   });
 }
 
@@ -77,7 +29,6 @@ async function getFavoriteGames() {
     allGames = await response.json();
     console.log(`📊 JSON data modtaget: ${allGames.length} games`);
 
-    // HVAD GØR DE NÆSTE PAR LINJER ??
     // Hent favorit titler fra localStorage
     const favoriteTitles = getFavorites();
     console.log(`❤️ Fandt ${favoriteTitles.length} favoritter i localStorage`);
@@ -191,117 +142,6 @@ function saveFavorites(favorites) {
   localStorage.setItem('gamesFavorites', JSON.stringify(favorites));
 }
 
-// ===== FILTERING =====
-function filterFavorites() {
-  const searchTerm = document.querySelector("#header-search-input").value.toLowerCase().trim();
-  const selectedGenre = document.querySelector("#header-genre-select").value;
-  const selectedLocation = document.querySelector("#location-select").value;
-  const selectedDifficulty = document.querySelector("#header-difficulty-select").value;
-  const sortBy = document.querySelector("#header-sort-select").value;
-
-  // Hent range værdier
-  const playtimeFrom = parseInt(document.querySelector("#header-playtime-from").value) || 0;
-  const playtimeTo = parseInt(document.querySelector("#header-playtime-to").value) || Infinity;
-  const ratingFrom = parseFloat(document.querySelector("#header-rating-from").value) || 0;
-  const ratingTo = parseFloat(document.querySelector("#header-rating-to").value) || 10;
-  const playersFrom = parseInt(document.querySelector("#header-players-from").value) || 1;
-  const ageFrom = parseInt(document.querySelector("#header-age-from").value) || 0;
-
-  // Filtrer favorit games
-  const filteredGames = favoriteGames.filter(game => {
-    const matchesSearch = !searchTerm || 
-      game.title.toLowerCase().includes(searchTerm) || 
-      game.description.toLowerCase().includes(searchTerm) ||
-      game.genre.toLowerCase().includes(searchTerm);
-
-    const matchesGenre = !selectedGenre || game.genre === selectedGenre;
-    const matchesLocation = !selectedLocation || game.location === selectedLocation;
-    const matchesDifficulty = !selectedDifficulty || game.difficulty === selectedDifficulty;
-    
-    const matchesPlaytime = game.playtime >= playtimeFrom && game.playtime <= playtimeTo;
-    const matchesRating = game.rating >= ratingFrom && game.rating <= ratingTo;
-    const matchesPlayers = game.players.min <= playersFrom && game.players.max >= playersFrom;
-    const matchesAge = game.age >= ageFrom;
-
-    return matchesSearch && matchesGenre && matchesLocation && matchesDifficulty && 
-           matchesPlaytime && matchesRating && matchesPlayers && matchesAge;
-  });
-
-  // Sortér games
-  const sortedGames = sortGames(filteredGames, sortBy);
-  
-  displayFavorites(sortedGames);
-  updateFavoritesCount(sortedGames.length);
-  updateFilterBadge();
-}
-
-// Sorterings funktion (samme som main app)
-function sortGames(games, sortBy) {
-  const gamesCopy = [...games];
-  
-  switch (sortBy) {
-    case "title":
-      return gamesCopy.sort((a, b) => a.title.localeCompare(b.title));
-    case "title-desc":
-      return gamesCopy.sort((a, b) => b.title.localeCompare(a.title));
-    case "rating":
-      return gamesCopy.sort((a, b) => a.rating - b.rating);
-    case "rating-desc":
-      return gamesCopy.sort((a, b) => b.rating - a.rating);
-    case "players-min":
-      return gamesCopy.sort((a, b) => a.players.min - b.players.min);
-    case "players-max":
-      return gamesCopy.sort((a, b) => b.players.max - a.players.max);
-    case "playtime":
-      return gamesCopy.sort((a, b) => a.playtime - b.playtime);
-    case "playtime-desc":
-      return gamesCopy.sort((a, b) => b.playtime - a.playtime);
-    default:
-      return gamesCopy; // Standard rækkefølge
-  }
-}
-
-// Ryd alle filtre
-function clearAllFilters() {
-  document.querySelector("#header-search-input").value = "";
-  document.querySelector("#header-genre-select").value = "";
-  document.querySelector("#header-sort-select").value = "";
-  document.querySelector("#location-select").value = "";
-  document.querySelector("#header-difficulty-select").value = "";
-  document.querySelector("#header-playtime-from").value = "";
-  document.querySelector("#header-playtime-to").value = "";
-  document.querySelector("#header-rating-from").value = "";
-  document.querySelector("#header-rating-to").value = "";
-  document.querySelector("#header-players-from").value = "";
-  document.querySelector("#header-age-from").value = "";
-  
-  filterFavorites();
-}
-
-// Opdater filter badge
-function updateFilterBadge() {
-  const badge = document.querySelector("#filter-badge");
-  let activeFilters = 0;
-  
-  if (document.querySelector("#header-search-input").value) activeFilters++;
-  if (document.querySelector("#header-genre-select").value) activeFilters++;
-  if (document.querySelector("#header-sort-select").value) activeFilters++;
-  if (document.querySelector("#location-select").value) activeFilters++;
-  if (document.querySelector("#header-difficulty-select").value) activeFilters++;
-  if (document.querySelector("#header-playtime-from").value) activeFilters++;
-  if (document.querySelector("#header-playtime-to").value) activeFilters++;
-  if (document.querySelector("#header-rating-from").value) activeFilters++;
-  if (document.querySelector("#header-rating-to").value) activeFilters++;
-  if (document.querySelector("#header-players-from").value) activeFilters++;
-  if (document.querySelector("#header-age-from").value) activeFilters++;
-  
-  if (activeFilters > 0) {
-    badge.textContent = activeFilters;
-    badge.style.display = "flex";
-  } else {
-    badge.style.display = "none";
-  }
-}
 
 // ===== MODAL =====
 function showGameModal(game) {
