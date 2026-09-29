@@ -62,12 +62,10 @@ span {
     color: var(--text-light);
 }
 
-h2 {
-  font-family: poppins-semibold, sans-serif;
-  font-size: 15px;
-}
+
 
 h3 {
+  font-family: poppins, sans-serif;
   font-size: 25px;
 }
 

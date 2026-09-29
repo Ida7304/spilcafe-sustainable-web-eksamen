@@ -295,7 +295,7 @@ function displayGame(game) {
             <img src="${favoriteIconSrc}" alt="Favorit" class="favorite-icon">
           </button>
       <div class="game-info">
-        <h3>${game.title} <span class="game-rating"><img src="Images/Stjerne ikon.png" alt="Rating" class="rating-icon"> ${game.rating}</span></h3>
+        <h2>${game.title} <span class="game-rating"><img src="Images/Stjerne ikon.png" alt="Rating" class="rating-icon"> ${game.rating}</span></h2>
         <p class="game-shelf">Hylde ${game.shelf}</p>
         <p class="game-players"><img src="Images/Spillere ikon.png" alt="Players" class="players-icon"> ${game.players.min}-${game.players.max} spillere</p>
         <p class="game-playtime"><img src="Images/Tid ikon.png" alt="Playtime" class="playtime-icon"> ${game.playtime} minutter </p>
